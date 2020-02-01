@@ -1,0 +1,75 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.your.app.p4ck4ge.name"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	
+    <!-- optional permission -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+	    
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="21" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:theme="@style/MyTheme"
+            android:name="com.your.app.p4ck4ge.name.MainActivity"
+            android:label="@string/app_name" >
+               <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>          
+        </activity>
+        <activity
+            android:theme="@style/CustomTheme"                 
+            android:name="com.your.app.p4ck4ge.name.WallpaperSettings"
+            android:exported="true"
+            android:label="@string/app_name"                      
+             >    
+        </activity> 
+                
+        <!-- AdNolesh SDK -->
+        <activity
+            android:name="com.nolesh.ads.AdNoleshActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+
+        <receiver android:name="com.nolesh.ads.Notification">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />                
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="com.nolesh.ads.AppInstallTrackingReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.INSTALL_PACKAGES" >
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.nolesh.ads.AppInstallTrackingService"
+            android:enabled="true"/>
+
+        <service
+            android:name="com.nolesh.ads.AppInstallTrackingJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+      
+              
+        <!-- Your unique key that can be taken from the website -->
+        <meta-data
+            android:name="com.nolesh.ads.API_TOKEN"
+            android:value="YOUR_API_KEY"/>
+		
+    </application>
+
+</manifest>
